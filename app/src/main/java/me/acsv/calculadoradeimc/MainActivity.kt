@@ -1,7 +1,10 @@
 package me.acsv.calculadoradeimc
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import me.acsv.calculadoradeimc.databinding.ActivityMainBinding
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -31,6 +34,23 @@ class MainActivity : AppCompatActivity() {
                 calcularImc()
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_principal, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.reset -> {
+                binding.mensagem.text = ""
+                binding.editAltura.setText("")
+                binding.editPeso.setText("")
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun calcularImc() {
